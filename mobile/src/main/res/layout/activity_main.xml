@@ -7,13 +7,45 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <FrameLayout
+        android:id="@+id/titleFrame"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/black"
+        app:layout_constraintTop_toTopOf="parent">
+        <TextView android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="JORGE ESTEBAN CORRAL SANTILLAN"
+            android:textFontWeight="700"
+            android:textSize="45dp"
+            android:textColor="@color/white" />
+    </FrameLayout>
     <TextView
+        android:id="@+id/titleCounter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="0"
+        android:textFontWeight="700"
+        android:textSize="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/titleFrame"
+        />
+
+    <Button
+        android:id="@+id/greetButton"
+        android:layout_width="170dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="3dp"
+        android:text="Count"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleCounter"
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

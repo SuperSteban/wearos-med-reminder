@@ -1,6 +1,9 @@
 package com.example.medreminder
 
 import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -11,10 +14,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+        var count: Int = 0
+        val countButton: Button = findViewById<Button>(R.id.greetButton)
+        val textCounter: TextView = findViewById<TextView>(R.id.titleCounter)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        countButton.setOnClickListener {
+            count += 1
+            Toast.makeText(this, "Conteo = ${count}", Toast.LENGTH_SHORT).show()
+            textCounter.text= count.toString()
+        }
+
     }
+
 }
