@@ -41,6 +41,7 @@ android {
 
 dependencies {
     implementation(libs.play.services.wearable)
+    implementation("androidx.core:core-splashscreen:1.2.0-rc01")
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)

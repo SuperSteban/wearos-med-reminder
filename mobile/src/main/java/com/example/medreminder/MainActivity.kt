@@ -6,12 +6,17 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        installSplashScreen()
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
         var count: Int = 0
@@ -30,5 +35,15 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+}
+
+
+
+@Preview(
+    showSystemUi = true
+)
+@Composable
+fun SplashPreview(){
 
 }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.MedReminder.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/creamy</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/icon_avd_anim</item>
+        <item name="windowSplashScreenAnimationDuration">1000</item>
+        <item name="windowSplashScreenIconBackgroundColor">@color/blue_ciel</item>
+        <item name="postSplashScreenTheme">@style/Base.Theme.MedReminder</item>
+    </style>
+</resources>
