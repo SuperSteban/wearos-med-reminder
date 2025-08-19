@@ -37,14 +37,30 @@ android {
     buildFeatures {
         compose = true
     }
+
 }
 
 dependencies {
-    val material3Version = "material3"
-    val composeBom = platform("androidx.compose:compose-bom:2025.07.00")
+    //Jetpack COMPOSE
+    val composeBom = platform("androidx.compose:compose-bom:2025.05.00")
+    val nav_version = "2.9.3"
+
+    implementation("androidx.navigation:navigation-compose:$nav_version")
     implementation(composeBom)
     androidTestImplementation(composeBom)
     debugImplementation("androidx.compose.ui:ui-tooling-android:1.8.3")
+    implementation("androidx.activity:activity-compose:1.10.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.5")
+    //MATERIAL
+    implementation("androidx.compose.material3:material3:1.3.2")
+    implementation("androidx.compose.material:material-icons-extended")
+    //PREVIEW
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    debugImplementation("androidx.compose.ui:ui-tooling")
+    //TESTS
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+    debugImplementation("androidx.compose.ui:ui-test-manifest")
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -53,11 +69,6 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     testImplementation(libs.junit)
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    debugImplementation("androidx.compose.ui:ui-tooling")
-    implementation("androidx.compose.material3:material3:${material3Version}")
-    implementation("androidx.compose.material:material-icons-extended")
-    implementation("androidx.compose.material:material-icons-core")
     //splashscreen
     implementation("androidx.core:core-splashscreen:1.0.0")
     androidTestImplementation(libs.androidx.junit)

@@ -6,6 +6,7 @@
 package com.example.medreminder.presentation
 
 import android.os.Bundle
+import android.os.Looper
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.Size
@@ -43,13 +44,15 @@ import androidx.wear.compose.material.TimeText
 import androidx.wear.tooling.preview.devices.WearDevices
 import com.example.medreminder.R
 import com.example.medreminder.presentation.theme.MedReminderTheme
+import java.util.logging.Handler
+
+
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
-
-        setTheme(android.R.style.Theme_DeviceDefault)
 
         setContent {
             WearApp("Android")

@@ -1,9 +1,8 @@
 <resources>
-    <style name="MainActivityTheme.Starting" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/blue_ciel</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/icon_avd_anim</item>
-        <item name="windowSplashScreenAnimationDuration">10000</item>
-        <item name="windowSplashScreenIconBackgroundColor">@color/creamy</item>
+    <style name="MainActivityTheme.Starting" parent="Theme.SplashScreen.IconBackground">
+        <item name="windowSplashScreenBackground">@color/indigo</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/smart_48dp_100px</item>
+        <item name="windowSplashScreenAnimationDuration">1000</item>
         <item name="postSplashScreenTheme">@android:style/Theme.DeviceDefault</item>
     </style>
 </resources>
