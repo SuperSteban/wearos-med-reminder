@@ -16,6 +16,7 @@ import com.example.medreminder.domain.model.Medication
 import com.example.medreminder.domain.model.MedicationForm
 import com.example.medreminder.presentation.ui.common.components.header.Header
 import com.example.medreminder.presentation.ui.screens.home.components.MedicationComponent
+import com.example.medreminder.presentation.ui.screens.home.components.medBody
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.LocalTime
@@ -30,14 +31,16 @@ val medicationsSetExample = listOf<Medication>(
         isActive = true,
         schedule = listOf(
             MedSchedules(
-                id = "sch_003_1",
+                id = 1,
+                medicationId = 982,
                 time = LocalTime.of(7, 0),
                 daysOfWeek = DayOfWeek.values().toList(),
                 startDate = LocalDate.now().minusDays(60),
                 endDate = null,
                 isActive = true
             ), MedSchedules(
-                id = "sch_003_2",
+                id = 888,
+                medicationId = 87749,
                 time = LocalTime.of(19, 0),
                 daysOfWeek = DayOfWeek.values().toList(),
                 startDate = LocalDate.now().minusDays(60),
@@ -54,14 +57,16 @@ val medicationsSetExample = listOf<Medication>(
         isActive = true,
         schedule = listOf(
             MedSchedules(
-                id = "sch_003_1",
+                id = 31,
+                medicationId = 98786,
                 time = LocalTime.of(7, 0),
                 daysOfWeek = DayOfWeek.values().toList(),
                 startDate = LocalDate.now().minusDays(60),
                 endDate = null,
                 isActive = true
             ), MedSchedules(
-                id = "sch_003_2",
+                id = 28737,
+                medicationId = 887761,
                 time = LocalTime.of(19, 0),
                 daysOfWeek = DayOfWeek.values().toList(),
                 startDate = LocalDate.now().minusDays(60),
@@ -78,7 +83,8 @@ val medicationsSetExample = listOf<Medication>(
         isActive = true,
         schedule = listOf(
             MedSchedules(
-                id = "sch_003_1",
+                id = 646482,
+                medicationId = 66523518,
                 time = LocalTime.of(7, 0),
                 daysOfWeek = DayOfWeek.values().toList(),
                 startDate = LocalDate.now().minusDays(60),
@@ -86,7 +92,8 @@ val medicationsSetExample = listOf<Medication>(
                 isActive = true
             ),
             MedSchedules(
-                id = "sch_003_2",
+                id = 200099,
+                medicationId = 88556,
                 time = LocalTime.of(19, 0),
                 daysOfWeek = DayOfWeek.values().toList(),
                 startDate = LocalDate.now().minusDays(60),
@@ -103,7 +110,8 @@ val medicationsSetExample = listOf<Medication>(
         isActive = true,
         schedule = listOf(
             MedSchedules(
-                id = "sch_003_1",
+                id = 9966,
+                medicationId = 7742,
                 time = LocalTime.of(7, 0),
                 daysOfWeek = DayOfWeek.values().toList(),
                 startDate = LocalDate.now().minusDays(60),
@@ -111,7 +119,8 @@ val medicationsSetExample = listOf<Medication>(
                 isActive = true
             ),
             MedSchedules(
-                id = "sch_003_2",
+                id = 997111,
+                medicationId = 99112,
                 time = LocalTime.of(19, 0),
                 daysOfWeek = DayOfWeek.values().toList(),
                 startDate = LocalDate.now().minusDays(60),
@@ -138,14 +147,7 @@ fun HomeScreen(
         LazyColumn(Modifier.fillMaxWidth(), content = {
             itemsIndexed(medicationsSetExample, itemContent = { index, item ->
 
-                MedicationComponent(
-                    time = TODO(),
-                    subTime = TODO(),
-                    onTaken = TODO(),
-                    onPostpone = TODO(),
-                    onSkip = TODO(),
-                    modifier = TODO()
-                )
+
 
             })
         })

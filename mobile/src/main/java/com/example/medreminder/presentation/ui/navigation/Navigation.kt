@@ -1,21 +1,13 @@
 package com.example.medreminder.presentation.ui.navigation
 
-import android.net.http.SslCertificate.saveState
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.MedicalServices
-import androidx.compose.material.icons.filled.Notifications
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Schedule
 import androidx.compose.material.icons.filled.Watch
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.MedicalServices
-import androidx.compose.material.icons.outlined.Notifications
-import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.Schedule
 import androidx.compose.material.icons.outlined.Watch
 import androidx.compose.material3.Icon
@@ -25,33 +17,39 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.medreminder.domain.model.data.MedicationRepository
+import com.example.medreminder.domain.model.data.MedicationRepositoryImpl
 import com.example.medreminder.presentation.ui.screens.conection.ConectionScreen
 import com.example.medreminder.presentation.ui.screens.home.HomeScreen
-import com.example.medreminder.presentation.ui.screens.medReminderForm.MedReminderFormScreen
-import com.example.medreminder.presentation.ui.screens.medicationForm.MedicationScreen
+import com.example.medreminder.presentation.ui.screens.medReminderForm.ScheduleFormScreen
+import com.example.medreminder.presentation.ui.screens.medReminderForm.ScheduleListScreen
+import com.example.medreminder.presentation.ui.screens.medicationForm.AddMedicationScreen
+import com.example.medreminder.presentation.ui.screens.medicationForm.MedicationListViewModelFactory
+import com.example.medreminder.presentation.ui.screens.medicationForm.MedicationsScreen
+import com.example.medreminder.presentation.ui.screens.medicationForm.viewModel.AddMedicationViewModel
 
 // Rutas de navegación
 object MedAppRoutes {
+    const val ADD_SCHEDULE = "add_schedule"
     const val HOME = "home"
     const val MEDICATIONS = "medications"
     const val SCHEDULE = "schedule"
 
-    const val CONECCTION = "conecction"
+    const val CONNECTION = "connection"
+
+    const val ADD_MEDICATION = "add_medication"
 }
 
 data class NavigationItem(
@@ -81,8 +79,8 @@ val navigationItems = listOf(
         selectedIcon = Icons.Filled.Schedule
     ),
     NavigationItem(
-        route = MedAppRoutes.CONECCTION,
-        title = "Conection",
+        route = MedAppRoutes.CONNECTION,
+        title = "Conexion",
         icon = Icons.Outlined.Watch,
         selectedIcon = Icons.Filled.Watch
     ),
@@ -104,13 +102,29 @@ fun MedAppNavGraph(
         }
 
         composable(MedAppRoutes.MEDICATIONS) {
-            MedicationScreen(navController = navController)
+            MedicationsScreen(navController = navController)
+        }
+        composable(MedAppRoutes.ADD_MEDICATION) {
+            val medicationRepository: MedicationRepository = MedicationRepositoryImpl()
+            val factory = MedicationListViewModelFactory(medicationRepository)
+            val addMedicationViewModel: AddMedicationViewModel = viewModel(factory = factory)
+            AddMedicationScreen(navController = navController,
+               viewModel = addMedicationViewModel
+            )
+        }
+        composable(MedAppRoutes.SCHEDULE) {
+            ScheduleListScreen(
+                navController,
+                viewModel = viewModel<AddMedicationViewModel>()
+            )
+        }
+        composable(MedAppRoutes.ADD_SCHEDULE) {
+            ScheduleFormScreen(
+                navController
+            )
         }
 
-        composable(MedAppRoutes.SCHEDULE) {
-            MedReminderFormScreen(navController = navController)
-        }
-        composable(MedAppRoutes.CONECCTION) {
+        composable(MedAppRoutes.CONNECTION) {
             ConectionScreen(navController = navController)
         }
 
@@ -200,6 +214,6 @@ fun MedAppNavigationPreview() {
 @Composable
 fun MedicationsScreenPreview() {
     MaterialTheme {
-        MedicationScreen(navController = rememberNavController())
+        MedicationsScreen(navController = rememberNavController())
     }
 }

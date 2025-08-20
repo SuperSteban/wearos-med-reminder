@@ -5,7 +5,8 @@ import java.time.LocalDate
 import java.time.LocalTime
 
 data class MedSchedules(
-    val id: String,
+    val id: Int,
+    val medicationId: Int,
     val time: LocalTime,
     val daysOfWeek: List<DayOfWeek>,
     val startDate: LocalDate,

@@ -46,11 +46,17 @@ dependencies {
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.compose.material)
     implementation(libs.androidx.compose.foundation)
     implementation(libs.androidx.wear.tooling.preview)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.core.splashscreen)
+    //MATERIAL
+    implementation("androidx.wear.compose:compose-material3:1.0.0-alpha25")
+    implementation("androidx.compose.material:material-icons-extended")
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.foundation.layout)
+
+    debugImplementation("androidx.compose.ui:ui-tooling")
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
