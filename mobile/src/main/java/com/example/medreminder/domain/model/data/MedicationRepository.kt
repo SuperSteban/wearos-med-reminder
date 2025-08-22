@@ -8,6 +8,7 @@ interface MedicationRepository {
     suspend fun insertMedication(medication: Medication): Int
     suspend fun updateMedication(medication: Medication)
     suspend fun deleteMedication(id: Int)
+
 }
 
 class MedicationRepositoryImpl : MedicationRepository {
@@ -38,4 +39,6 @@ class MedicationRepositoryImpl : MedicationRepository {
     override suspend fun deleteMedication(id: Int) {
         medications.removeAll { it.id == id }
     }
+
+
 }
