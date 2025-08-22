@@ -1,7 +1,6 @@
 package com.example.medreminder.domain.model.data
 
 import com.example.medreminder.domain.model.Medication
-import kotlinx.coroutines.flow.Flow
 
 interface MedicationRepository {
     suspend fun getAllMedications(): List<Medication>
@@ -12,7 +11,6 @@ interface MedicationRepository {
 }
 
 class MedicationRepositoryImpl : MedicationRepository {
-    // Simulación de base de datos en memoria
     private val medications = mutableListOf<Medication>()
     private var nextId = 1
 

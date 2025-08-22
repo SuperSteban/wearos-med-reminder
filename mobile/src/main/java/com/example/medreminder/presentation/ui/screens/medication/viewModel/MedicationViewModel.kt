@@ -1,7 +1,5 @@
-package com.example.medreminder.presentation.ui.screens.medicationForm.viewModel
+package com.example.medreminder.presentation.ui.screens.medication.viewModel
 
-import android.R
-import androidx.compose.animation.core.copy
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,16 +8,15 @@ import com.example.medreminder.domain.model.Medication
 import com.example.medreminder.domain.model.MedicationForm
 import com.example.medreminder.domain.model.data.MedicationRepository
 import com.example.medreminder.domain.model.data.MedicationRepositoryImpl
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import org.jetbrains.annotations.Async
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.LocalTime
-import kotlin.plus
 
 // UI State para la lista de medicamentos
 data class MedicationListUiState(
@@ -40,28 +37,23 @@ data class AddMedicationUiState(
 )
 
 
-// ViewModel para la lista de medicamentos
 @Suppress("UNCHECKED_CAST")
 class MedicationListViewModel(
     private val repository: MedicationRepository = MedicationRepositoryImpl(),
 ) : ViewModel() {
-    constructor() : this(MedicationRepositoryImpl())
 
-    private val _uiState = MutableStateFlow(MedicationListUiState())
-    val uiState: StateFlow<MedicationListUiState> = _uiState.asStateFlow()
+    val _uiState = MutableStateFlow(MedicationListUiState())
 
     init {
         loadMedications()
-
     }
 
     fun loadMedications() {
         viewModelScope.launch { // Inicia una coroutina
             _uiState.update { it.copy(isLoading = true, error = null) } // Actualiza estado a cargando y limpia errores
             try {
-                // Llama directamente a la función suspendida
                 val medicationsList = repository.getAllMedications() // Esto ejecutará la función suspendida
-
+                delay(1000)
                 _uiState.update {
                     it.copy(isLoading = false, medications = medicationsList as List<Medication>, error = null)
                 }
@@ -105,7 +97,6 @@ class AddMedicationViewModel(
     ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(AddMedicationUiState())
-    val uiState: StateFlow<AddMedicationUiState> = _uiState.asStateFlow()
     companion object {
         const val NEW_SCHEDULE_RESULT_KEY = "new_schedule_result_key" // ¡Aquí está!
     }

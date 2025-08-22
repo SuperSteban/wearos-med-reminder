@@ -1,5 +1,7 @@
 package com.example.medreminder.presentation.ui.navigation
 
+import MedicationListScreen
+import ScheduleListScreen
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
@@ -23,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -33,12 +36,7 @@ import com.example.medreminder.domain.model.data.MedicationRepository
 import com.example.medreminder.domain.model.data.MedicationRepositoryImpl
 import com.example.medreminder.presentation.ui.screens.conection.ConectionScreen
 import com.example.medreminder.presentation.ui.screens.home.HomeScreen
-import com.example.medreminder.presentation.ui.screens.medReminderForm.ScheduleFormScreen
-import com.example.medreminder.presentation.ui.screens.medReminderForm.ScheduleListScreen
-import com.example.medreminder.presentation.ui.screens.medicationForm.AddMedicationScreen
-import com.example.medreminder.presentation.ui.screens.medicationForm.MedicationListViewModelFactory
-import com.example.medreminder.presentation.ui.screens.medicationForm.MedicationsScreen
-import com.example.medreminder.presentation.ui.screens.medicationForm.viewModel.AddMedicationViewModel
+import com.example.medreminder.presentation.ui.screens.medication.viewModel.AddMedicationViewModel
 
 // Rutas de navegación
 object MedAppRoutes {
@@ -102,27 +100,15 @@ fun MedAppNavGraph(
         }
 
         composable(MedAppRoutes.MEDICATIONS) {
-            MedicationsScreen(navController = navController)
+            MedicationListScreen(navController = navController)
         }
-        composable(MedAppRoutes.ADD_MEDICATION) {
-            val medicationRepository: MedicationRepository = MedicationRepositoryImpl()
-            val factory = MedicationListViewModelFactory(medicationRepository)
-            val addMedicationViewModel: AddMedicationViewModel = viewModel(factory = factory)
-            AddMedicationScreen(navController = navController,
-               viewModel = addMedicationViewModel
-            )
-        }
+
         composable(MedAppRoutes.SCHEDULE) {
             ScheduleListScreen(
-                navController,
-                viewModel = viewModel<AddMedicationViewModel>()
+                navController = navController,
             )
         }
-        composable(MedAppRoutes.ADD_SCHEDULE) {
-            ScheduleFormScreen(
-                navController
-            )
-        }
+
 
         composable(MedAppRoutes.CONNECTION) {
             ConectionScreen(navController = navController)
@@ -210,10 +196,3 @@ fun MedAppNavigationPreview() {
     }
 }
 
-@Preview(showBackground = true, name = "Medications Screen")
-@Composable
-fun MedicationsScreenPreview() {
-    MaterialTheme {
-        MedicationsScreen(navController = rememberNavController())
-    }
-}
